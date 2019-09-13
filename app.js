@@ -35,6 +35,27 @@ document.querySelector('.btn-roll').addEventListener('click', function() {
     var diceDOM = document.querySelector('.dice');
     diceDom.style.display='block';
     diceDOM.src = 'dice-' + dice + '.png';
+
+    //Update Round Score If Rolled Number Was NOT 1
+
+    if (dice !== 1) {
+        //Add Score
+        roundScore += dice;
+        document.querySelector('#current-' + activePlayer).textContent = roundScore;
+    } else {
+        //Next Player
+        activePlayer === 0 ? activePlayer = 1 : activePlayer = 0;
+        roundScore = 0;
+
+        document.getElementById('current-0').textContent = '0';  
+        document.getElementById('current-1').textContent = '0'; 
+        
+        document.querySelector('.player-0-panel').classList.toggle('active');
+        document.querySelector('.player-1-panel').classList.toggle('active');
+
+        document.querySelector('.dice').style.display = 'none';
+    }
+    
 });
 
 
